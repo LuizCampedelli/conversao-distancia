@@ -3,7 +3,7 @@ import logging
 import socket  # Módulo para obter informações do servidor
 
 app = Flask(__name__,
-            static_url_path='', 
+            static_url_path='',
             static_folder='static',
             template_folder='templates')
 
@@ -13,7 +13,7 @@ def index():
     hostname = socket.gethostname()
     ip_address = socket.gethostbyname(hostname)
 
-    if request.method == 'GET':  
+    if request.method == 'GET':
         return render_template('index.html', hostname=hostname, ip_address=ip_address)
     else:
         selecao = request.form.get('selectTemp')
@@ -25,10 +25,10 @@ def index():
             return render_template('index.html', conteudo={'unidade': 'inválido', 'valor': 'Entrada inválida'}, hostname=hostname, ip_address=ip_address)
 
         # Lógica de conversão
-        if selecao == '1':  # Metro para Quilômetros
+        if selecao == '1':  # Metro para Kilômetros
             resultado = valor / 1000
             unidade = "quilômetros"
-        elif selecao == '2':  # Quilômetros para Metro
+        elif selecao == '2':  # Kilômetros para Metro
             resultado = valor * 1000
             unidade = "metros"
         elif selecao == '3':  # Metro para Milhas
